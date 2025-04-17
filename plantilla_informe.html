@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Informe Mensual de Centros</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1, h2 { color: #003366; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 30px; }
+        th, td { border: 1px solid #cccccc; padding: 8px; text-align: center; }
+        th { background-color: #eeeeee; }
+        .kpi { font-size: 1.2em; font-weight: bold; color: #004488; }
+        .section { margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <h1>Informe Mensual – Abril 2025</h1>
+    <p class="kpi">Resumen General</p>
+    <ul>
+        <li>Asistencia promedio: {{ resumen.asistencia_prom }}%</li>
+        <li>Satisfacción promedio: {{ resumen.satisfaccion_prom }}</li>
+        <li>Tasa de finalización: {{ resumen.finalizacion_prom }}%</li>
+        <li>Incidencias totales: {{ resumen.incidencias_tot }}</li>
+    </ul>
+
+    <div class="section">
+        <h2>Comparativa por Centro</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Centro</th>
+                    <th>Asistencia Abril</th>
+                    <th>Vs Marzo</th>
+                    <th>Satisfacción Abril</th>
+                    <th>Vs Marzo</th>
+                    <th>Finalización Abril</th>
+                    <th>Vs Marzo</th>
+                    <th>Incidencias Abril</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in datos %}
+                <tr>
+                    <td>{{ fila.Centro }}</td>
+                    <td>{{ fila.Asistencia_Abril }}%</td>
+                    <td>{{ fila.Dif_Asistencia }}%</td>
+                    <td>{{ fila.Satisfaccion_Abril }}</td>
+                    <td>{{ fila.Dif_Satisfaccion }}</td>
+                    <td>{{ fila.Finalizacion_Abril }}%</td>
+                    <td>{{ fila.Dif_Finalizacion }}%</td>
+                    <td>{{ fila.Incidencias_Abril }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Visualizaciones</h2>
+        <p><img src="../images/grafico_asistencia.png" width="600px"></p>
+        <p><img src="../images/grafico_satisfaccion.png" width="600px"></p>
+    </div>
+</body>
+</html>
